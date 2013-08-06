@@ -18,4 +18,18 @@ nav {
 	
 	
 }
+textarea {
+	width: 100%;
+	border: 2px black solid;
+	
+}
+
+#searchSubmit{
+	padding: 10px 20px;
+    border-radius: 5px;
+    display: block;
+    width: 130px;
+    margin: 10px auto 0px auto;
+    height: 25%;
+}
 
