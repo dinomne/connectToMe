@@ -25,10 +25,11 @@ box-shadow: -3px -3px 2px #4a4a4a;
 
 
 }
-html, body{
+html{
 	
 	display: block;
 	background-image: -moz-linear-gradient(rgba(152, 152, 152, 0.75) 0%, rgba(72, 72, 72, 0.75) 95%);
+	min-height: 100%;
 }
 img {
 	padding-bottom: 20px;
