@@ -1,127 +1,119 @@
+require(['../code/idbstore.js'], function(IDBStore){
+	
+	
+	var tpls = {
+		row: '<tr><td>{customerid}</td><td><input id="name_{customerid}" value="{name}"></td><tr><td>{customerid}</td><td><input id="name_{customerid}" value="{name}"></td><td><input id="firstname_{customerid}" value="{firstname}"></td><td><button onclick="app.deleteItem({customerid});">delete</button><button onclick="app.updateItem({customerid});">update</button></td></tr>',
+		table: '<table><tr><th>ID</th><th>Last Name</th><th>First Name</th><th></th></tr>{content}</table>'
+	};
+	var contacts 
+	function init(){
+
+	
+	
+		
+		// create a store ("table") for the contacts
+		contacts = new IDBStore({
+			storeName: 'contacts',
+			keyPath: 'id',
+			autoIncrement: true,
+			onStoreReady: refreshTable
+		});
+
+		// create references for some nodes we have to work with
+		['name', 'id', 'title', 'address', 'email','website', 'edit' ].forEach(function(id){
+			nodeCache[id] = document.getElementById(id);
+		});
+
+		// and listen to the form's submit button.
+		nodeCache.edit.addEventListener('click', enterData);
+	}
+
+	function refreshTable(){
+		contacts.getAll(listItems);
+	}
+
+	function listItems(data){
+		var content = '';
+		data.forEach(function(item){
+			content += tpls.row.replace(/\{([^\}]+)\}/g, function(_, key){
+				return item[key];
+			});
+		});
+		nodeCache['results-container'].innerHTML = tpls.table.replace('{content}', content);
+	}
+
+	function enterData(){
+		// read data from inputs…
+		var data = {};
+		['name', 'id', 'title', 'address', 'email','website'].forEach(function(key){
+			var value = nodeCache[key].value.trim();
+			if(value.length){
+				if(key == 'id'){ // We want the id to be numeric:
+					value = parseInt(value, 10);
+				}
+				data[key] = value;
+			}
+		});
+
+		// …and store them away.
+		contacts.put(data, function(){
+			clearForm();
+			refreshTable();
+		});
+	}
+
+	function clearForm(){
+		['id','firstname','lastname'].forEach(function(id){
+			nodeCache[id].value = '';
+		});
+	}
+
+	function deleteItem(id){
+		contacts.remove(id, refreshTable);
+	}
+
+	function updateItem(id){
+		var data = {
+			id: id,
+			name: document.getElementById('name_' + id).value.trim(),
+			email: document.getElementById('email_' + id).value.trim()
+		};
+		contacts.put(data, refreshTable);
+	}
+
+	// export some functions to the outside to
+	// make the onclick="" attributes work.
+	window.app = {
+		deleteItem: deleteItem,
+		updateItem: updateItem
+	};
+
+	// go!
+	init();
+
+});
+/*
 function onStart() {
-	var name = document.getElementById('name').value;
-	var title = document.getElementById('title').value;
-	var address = document.getElementById('address').value;
-	var email = document.getElementById('email').value;
-	var telephone = document.getElementById('telephone').value;
-	var website = document.getElementById('website').value;
-	var button = document.getElementById("edit");
-   button.addEventListener("onclick", changeMe, false);
+	
 }
 window.addEventListener("load", onStart, false);
 
-contacts = {};
-contacts.indexedDB = {};
-contacts.indexedDB.db = null;
-
-contacts.indexedDB.open = function() {
-  var version = 1;
-  var request = indexedDB.open("contacts", version);
-
-  request.onupgradeneeded = function(e) {
-    var db = e.target.result;
-
-	/* version change
-    // A versionchange transaction is started automatically.
-    e.target.transaction.onerror = contacts.indexedDB.onerror;
-
-    if(db.objectStoreNames.contains("contacts")) {
-      db.deleteObjectStore("contacts");
-    }
-
-    var store = db.createObjectStore("contacts",
-      {keyPath: "timeStamp"});
-  };
-	*/
-  request.onsuccess = function(e) {
-    contacts.indexedDB.db = e.target.result;
-    contacts.indexedDB.getAllContacts;
-  };
-
-  request.onerror = contacts.indexedDB.onerror;
-};}
-
-contacts.indexedDB.addContacts = function(name, title, adress, email, telephone, website){
-  var db = contacts.indexedDB.db;
-  var trans = db.transaction(["contacts"], "readwrite");
-  var store = trans.objectStore("contacts");
-  var request = store.put({
-    "name": name,
-    "title": title,
-    "address":address,
-    "email": email,
-    "telephone":telephone,
-    "website":website
-  });
-
-  request.onsuccess = function(e) {
-    // Re-render all the todo's
-    contacts.indexedDB.getAllTodoItems();
-  };
-
-  request.onerror = function(e) {
-    console.log(e.value);
-  };
-};
-contacts.indexedDB.getAllContacts = function() {
-  var contacts = document.getElementById("num");
-  contacts.innerHTML = "";
-
-  var db = contacts.indexedDB.db;
-  var trans = db.transaction(["contacts"], "readwrite");
-  var store = trans.objectStore("contacts");
-
-  // Get everything in the store;
-  var keyRange = IDBKeyRange.lowerBound(0);
-  var cursorRequest = store.openCursor(keyRange);
-
-  cursorRequest.onsuccess = function(e) {
-    var result = e.target.result;
-    if(!!result == false)
-      return;
-
-    renderTodo(result.value);
-    result.continue();
-  };
-
-  cursorRequest.onerror = contacts.indexedDB.onerror;
-};
-	contacts.indexedDB.deleteTodo = function(id) {
-  var db = contacts.indexedDB.db;
-  var trans = db.transaction(["contacts"], "readwrite");
-  var store = trans.objectStore("contacts");
-
-  var request = store.delete(id);
-
-  request.onsuccess = function(e) {
-    contacts.indexedDB.getAllContacts();  // Refresh the screen
-  };
-
-  request.onerror = function(e) {
-    console.log(e);
-  };
-};
-function init() {
-  contacts.indexedDB.open(); // open displays the data previously saved
-}
-
-window.addEventListener("DOMContentLoaded", init, false);
-function addContacts() {
-  var todo = document.getElementById('todo');
-
-  contacts.indexedDB.addContacts(todo.value);
-  todo.value = '';
-}	
-
+/*
 function changeMe(e) {
-	contacts.indexedDB.addContacts(name, title, adress, email, telephone, website);
+	********(1,name, title, address, email, telephone, website);
 }
 
-
+/*
+var contacts = new IDBStore({
+  dbVersion: 1,
+  storeName: 'contacts',
+  keyPath: 'id',
+  autoIncrement: true,
+  onStoreReady: function(){
+    console.log('Store ready!');
+  }
+});
 	
-	
-	
-	
-	
+	*/
 	
 	
