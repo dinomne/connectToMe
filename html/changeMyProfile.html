@@ -3,12 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../css/template.css" />
-<link rel="stylesheet" type="text/css" href="..css/myProfile.css" />
-<script type="text/javascript" src="../code/db.js">
-<script type="text/javascript" src="../code/idbStore.js">
+<link rel="stylesheet" type="text/css" href="../css/myProfile.css" />
+<script type="text/javascript" src="../code/DBW.js"></script>
+<script type="text/javascript" src="../code/require.js"></script>
 
 
-</script>
 <title>My Profile</title>
 </head>
 <body>
@@ -23,14 +22,14 @@
 	</nav>
 	
 	<div id="fields">
-		<textarea id="name">Name</textarea>	
-		<textarea id="title">Title</textarea>
-		<textarea id="address">Address</textarea>
-		<textarea id="email">Email</textarea>
-		<textarea id="telephone">Telephone</textarea>
-		<textarea id="website">Website</textarea>
+		<div><label>Name</label><input id="name"></div>
+		<div><label>Title</label><input id="title"></div>
+		<div><label>Address</label><input id="address"></div>
+		<div><label>Email</label><input id="email"></div>
+		<div><label>Telephone</label><input id="telephone"></div>
+		<div><label>Website</label><input id="website"></div>
 	</div>
 	<button id="edit">Edit</button>
-</body>
+<script type="text/javascript" src="../code/db.js">	
 </body>
 </html>
