@@ -3,15 +3,16 @@
 <head>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../css/template.css" />
-<link rel="stylesheet" type="text/css" href="..css/myProfile.css" />
-<script type="text/javascript" src="../code/DB.js">
+<link rel="stylesheet" type="text/css" href="../css/myProfile.css" />
+<script type="text/javascript" src="../code/DBW.js"></script>
+<script type="text/javascript" src="../code/require.js"></script>
 
-</script>
+
 <title>My Profile</title>
 </head>
 <body>
-	<script type="text/javascript">
-	screen.mozLockOrientation("landscape-primary"); </script>
+	<script type="text/javascript">screen.mozLockOrientation("landscape-primary"); </script>
+	<script type="text/javascript" src="../code/db.js"></script>
 	<nav>
 		<button id="homeB" onclick=location.href='../home.html'><img src="../img/home.png" alt="Smiley face" height="49" width="49"></button>	
 		<button id="contactB" onclick=location.href='contacts.html'><img src="../img/contacts.png" alt="Smiley face" height="50" width="50"></button>	
@@ -20,7 +21,10 @@
 		<button id="settingsB"onclick=location.href='settings.html'><img src="../img/settings.png" alt="Smiley face" height="50" width="50"></button>		
 	</nav>
 	
-	<div id= 'profile'></div>
-</body>
+	<div id="result">
+		
+	</div>
+	
+
 </body>
 </html>

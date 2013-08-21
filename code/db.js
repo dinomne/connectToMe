@@ -19,7 +19,7 @@ require(['../code/DBW'], function one(IDBStore){
 			autoIncrement: true,
 			//onStoreReady: refreshTable
 		});
-		['edit', 'id', 'name', 'title', 'address', 'email', 'telephone', 'website', ].forEach(function(id){
+		['edit', 'id', 'name', 'title', 'address', 'email', 'telephone', 'website', 'result'].forEach(function(id){
 			nodeCache[id] = document.getElementById(id);
 		});
 		nodeCache.edit.addEventListener('click', enterData);
@@ -39,7 +39,7 @@ require(['../code/DBW'], function one(IDBStore){
 				return item[key];
 			});
 		});
-		nodeCache['results-container'].innerHTML = tpls.table.replace('{content}', content);
+		nodeCache['result'].innerHTML = tpls.table.replace('{content}', content);
 	}*/
 	function enterData(){
 		// read data from inputs…
@@ -89,7 +89,11 @@ require(['../code/DBW'], function one(IDBStore){
 		deleteItem: deleteItem,
 		updateItem: updateItem
 	};
-	
+	function showCotact(id){
+		
+		['name', 'title', 'address', 'email', 'telephone', 'website'].forEach(function(key){
+			nodeCache['result'].innerHTML += <p id=key> [id].key </key>;
+	}
 	// go!
 	init();
 	
