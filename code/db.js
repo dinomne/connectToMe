@@ -1,4 +1,6 @@
-require(['../../DBW.js'], function one(IDBStore){
+
+
+require(['../code/DBW'], function one(IDBStore){
 	
 	var tpls = {
 		row: '<tr><td>{customerid}</td><td><input id="name_{customerid}" value="{name}"></td><td><input id="address_{customerid}" value="{address}"><td><input id="email_{customerid}" value="{email}"></td><td><input id="telephone_{customerid}" value="{telephone}"></td><td><input id="website_{customerid}" value="{website}"></td></td><td><button onclick="app.deleteItem({customerid});">delete</button><button onclick="app.updateItem({customerid});">update</button></td></tr>',
@@ -15,20 +17,21 @@ require(['../../DBW.js'], function one(IDBStore){
 			storeName: 'contacts',
 			keyPath: 'id',
 			autoIncrement: true,
-			onStoreReady: refreshTable
+			//onStoreReady: refreshTable
 		});
-		['edit', 'id', 'name', 'title', 'address', 'email', 'telephone', 'website'].forEach(function(id){
+		['edit', 'id', 'name', 'title', 'address', 'email', 'telephone', 'website', ].forEach(function(id){
 			nodeCache[id] = document.getElementById(id);
 		});
 		nodeCache.edit.addEventListener('click', enterData);
-		var edit = document.getElementById('edit');
-		edit.addEventListener('click', console.log('ok'), false);
-		conslole.log('init');
+		
+		
+		console.log('DB initilised');
 	}
+	/*
 	function refreshTable(){
 		contacts.getAll(listItems);
 	}
-	
+
 	function listItems(data){
 		var content = '';
 		data.forEach(function(item){
@@ -37,36 +40,36 @@ require(['../../DBW.js'], function one(IDBStore){
 			});
 		});
 		nodeCache['results-container'].innerHTML = tpls.table.replace('{content}', content);
-	}
+	}*/
 	function enterData(){
 		// read data from inputs…
+	   
 		var data = {};
 		['id', 'name', 'title', 'address', 'email', 'telephone', 'website'].forEach(function(key){
 			var value = nodeCache[key].value.trim();
 			if(value.length){
-				if(key == 'id'){ // We want the id to be numeric:
-					value = parseInt(value, 10);
-				}
 				data[key] = value;
-				conslole.log('ok');
+				console.log(key + ' inserted');
 			}
 		});
 	// …and store them away.
 		contacts.put(data, function(){
 			clearForm();
-			refreshTable();
-			conslole.log('ok');
+			
+			console.log('data stored');
 		});
 	}
 	
 	function clearForm(){
-		['id', 'name', 'title', 'address', 'email', 'telephone', 'website'].forEach(function(id){
-			nodeCache[id].value = '';
+		['name', 'title', 'address', 'email', 'telephone', 'website'].forEach(function(key){
+			nodeCache[key].value = '';
 		});
+		console.log("table cleared");
 	}
 	
 	function deleteItem(id){
 		contacts.remove(id, refreshTable);
+		
 	}
 	
 	function updateItem(id){
@@ -89,6 +92,6 @@ require(['../../DBW.js'], function one(IDBStore){
 	
 	// go!
 	init();
-	window.addEventListener('load', one(IDBStore), false);
+	
 });
-edit.addEventListener('click', console.log('ok'), false);
+
