@@ -4,15 +4,16 @@
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../css/template.css" />
 <link rel="stylesheet" type="text/css" href="../css/myProfile.css" />
-<script type="text/javascript" src="../code/DBW.js"></script>
+<script type="text/javascript" src="../code/lawnchair.js"></script>
 <script type="text/javascript" src="../code/require.js"></script>
+
 
 
 <title>My Profile</title>
 </head>
 <body>
 	<script type="text/javascript">screen.mozLockOrientation("landscape-primary"); </script>
-	<script type="text/javascript" src="../code/db.js"></script>
+	
 	<nav>
 		<button id="homeB" onclick=location.href='../home.html'><img src="../img/home.png" alt="Smiley face" height="49" width="49"></button>	
 		<button id="contactB" onclick=location.href='contacts.html'><img src="../img/contacts.png" alt="Smiley face" height="50" width="50"></button>	
@@ -20,10 +21,20 @@
 		<button id="connectB"onclick=location.href='connect.html'><img src="../img/connect.png" alt="Smiley face" height="50" width="50"></button>		
 		<button id="settingsB"onclick=location.href='changeMyProfile.html'><img src="../img/settings.png" alt="Smiley face" height="50" width="50"></button>		
 	</nav>
-	<script>id= 1; </script>
-	<script type="text/javascript" src="../code/showProfile.js">
-	<div style="padding:20%; backgraund-color: red;">
+	
+	<script>id= 'me'; </script>
+	<script type="text/javascript" src="../code/showProfile.js" >  </script>
+	
+	<p id='name'>ss</p>
+	<p id='title'>ss</p>
+	<p id='address'>ss</p>
+	<p id='email'>ss</p>
+	<p id='telephone' >ss</p>
+	<p id='website'>ss</p>
+
+	<div id="red" style="padding:20%; background-color: red;">
 	<button id="edit" onclick="location.href='changeMyProfile.html'" >Edit</button>
 	</div>
+	
 </body>
 </html>

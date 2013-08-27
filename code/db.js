@@ -1,19 +1,21 @@
 require(['../code/lawnchair'], Lawnchair({name:'people', record:'person'}, function(people){
 
 	var form;
-	var nodeCache = {};
+	
     // something to save...
-    ['edit', 'name', 'title', 'address', 'email', 'telephone', 'website'].forEach(function(id){
-			nodeCache[id] = document.getElementById(id);
-		})
-	console.log(nodeCache['name'].value[0])
+    
+    		['edit', 'name', 'title', 'address', 'email', 'telephone', 'website'].forEach(function(id){
+				id = document.getElementById(id);})
+		
+
+	
 	form = {
-				'name': nodeCache['name'].value[0],
-				'title': nodeCache['title'].value[0],
-				'address': nodeCache['address'].value[0],
-			 	'email': nodeCache['email'].value[0],
-			 	'telephone': nodeCache['telephone'].value[0],
-			 	'website': nodeCache['website'].value[0]};
+				'name': name.value[0],
+				'title': title.value[0],
+				'address':address.value[0],
+			 	'email': email.value[0],
+			 	'telephone': telephone.value[0],
+			 	'website': website.value[0]};
 	
 	document.getElementById('edit').addEventListener('click', function(){
 
@@ -22,6 +24,8 @@ require(['../code/lawnchair'], Lawnchair({name:'people', record:'person'}, funct
         // - it uses the named variable person
         people.save({key:"me", value:form}, 'console.log("ok")');	
     }, false);
+    
+    
  	
  	//FIX!!!!
 	function show(name){
@@ -39,3 +43,5 @@ require(['../code/lawnchair'], Lawnchair({name:'people', record:'person'}, funct
     })}
   document.getElementById('show').addEventListener('click', show("me"), false);
   }))
+  
+  
