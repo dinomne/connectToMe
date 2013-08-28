@@ -1,8 +1,7 @@
 require(['../code/lawnchair'], Lawnchair({name:'people', record:'person'},function OnLoad (people) {
 	
 	var tags = ['name', 'title', 'address', 'email', 'telephone', 'website'];
-	tags.forEach(function(name){var name = document.getElementById(name)});
-	var tags1 = [name, title, address, email, telephone, website];
+	
 	var red = document.getElementById("red");
 	
 	
@@ -10,15 +9,15 @@ require(['../code/lawnchair'], Lawnchair({name:'people', record:'person'},functi
 		
 		people.get(id, function(obj) {
 			if(obj) {
-            console.log("found task");
-            val = obj.value;
+           	 val = obj.value;
+            var p = document.getElementsByTagName("p");
+				for(var i = 0; i < p.length; i++){
+   					//do something to each div like
+   						p[i].innerHTML = val[tags[i]];
+   					}
             
-            [name, title, address, email, telephone, website].forEach(function(id){
-            	//POPRAVI HTML inject
-				id.innerHtml=  val[tags.indexOf[id]];
-            });
-        } else {
-            console.log("task not found");}
+            }else {
+            	console.log("task not found");}
         });})
         }))
         
