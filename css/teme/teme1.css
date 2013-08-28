@@ -1,0 +1,64 @@
+nav{
+	max-height:15%; 
+}
+div{
+	background-image: url(../teme/teme1.png);
+	background-repeat:no-repeat;
+	background-size: cover;
+	margin-top: 15%;
+	min-height: 230px;
+	height: auto;
+	width: 100%;
+	display: block;
+		
+}
+
+#name{
+	font-size: 35px ;
+	color: white;
+	position: absolute;
+	top: 22%;
+	left: 9%;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	 
+}
+#title{
+	font:"Blackadder ITC" 32px black;
+	position: absolute;
+	top: 45%;
+	left: 10%;
+	
+}
+#address{
+	position: absolute;
+	top: 65%;
+	left: 10%;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	
+}
+#email{
+	font: 13px black;
+	text-align: right;
+	left: 66%;
+	top: 35%;
+	 position: absolute;
+}
+#telephone{
+	font: 13px black;
+	z-index: 1;
+	left: 66%;
+	top: 45%;
+	text-align: right;
+	position: absolute;
+}
+#website{
+	font:13px black;
+	left: 66%;
+	text-align: right;
+	top: 54%;
+	position: absolute;
+}
+#edit{
+	top: 95%;
+}
