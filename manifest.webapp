@@ -4,9 +4,9 @@
   "description": "ConnectToMe",
   "launch_path": "/home.html",
   "icons": {
-    "16": "/pic.png",
-    "48": "/pic.png",
-    "128": "/pic.png"
+    "16": "/img/pic.jpg",
+    "48": "/img/pic.jpg",
+    "128": "/img/pic.jpg"
   },
   "developer": {
     "name": "Dino Memovic",

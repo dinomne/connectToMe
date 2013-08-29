@@ -5,7 +5,7 @@ require(['../code/lawnchair'], Lawnchair({name:'people', record:'person'},functi
 	var red = document.getElementById("red");
 	
 	
-	tags.forEach(function(name){
+	
 		
 		people.get(id, function(obj) {
 			if(obj) {
@@ -18,7 +18,7 @@ require(['../code/lawnchair'], Lawnchair({name:'people', record:'person'},functi
             
             }else {
             	console.log("task not found");}
-        });})
+        });
         }))
         
         

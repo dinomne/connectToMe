@@ -4,18 +4,20 @@ require(['../code/lawnchair'], Lawnchair({name:'people', record:'person'}, funct
 	
     // something to save...
     
-    		['edit', 'name', 'title', 'address', 'email', 'telephone', 'website'].forEach(function(id){
+    [ 'title', 'address', 'email', 'telephone', 'website', 'name', 'temeNo'].forEach(function(id){
 				id = document.getElementById(id);})
 		
 
 	
 	form = {
-				'name': name.value[0],
-				'title': title.value[0],
-				'address':address.value[0],
-			 	'email': email.value[0],
-			 	'telephone': telephone.value[0],
-			 	'website': website.value[0]};
+				'name': name.value,
+				'title': title.value,
+				'address':address.value,
+			 	'email': email.value,
+			 	'telephone': telephone.value,
+			 	'website': website.value,
+			 	'temeNo': temeNo.value};
+	
 	
 	document.getElementById('edit').addEventListener('click', function(){
 
