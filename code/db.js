@@ -41,6 +41,9 @@ function Database(people){
  	}else if (document.getElementById("My Profile").innerHTML==="Edit My Profile"){
  		Database(people);
  		console.log("edit profile");
+ 	}else if (document.getElementById("My Profile").innerHTML==="Contacts"){
+ 		listProfiles(people);
+ 		console.log("list contats");
  	}else{
  		console.log("no function for this");
  	}
@@ -70,7 +73,22 @@ function showProfile(id){
             	console.log("task not found");}
         });
  }		
-	
-	
+ 
+ function listProfiles(people){
+ 	
+ 	
 
-	
+ 		people.each(function add (keys) {
+	    	select = document.getElementsByTagName("select");
+	    	console.log(keys.key);
+	    	var opt = document.createElement('option');
+    		opt.value = keys.key;
+	    	
+	    	select.options[select.options.length] = new Option(opt.value, opt.value);
+			console.log(select);
+    	
+	 })}
+ 	
+    
+
+ 
