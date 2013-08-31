@@ -76,18 +76,18 @@ function showProfile(id){
  
  function listProfiles(people){
  	
- 	
-
+ 
  		people.each(function add (keys) {
-	    	select = document.getElementsByTagName("select");
+	    	select = document.getElementById("select");
 	    	console.log(keys.key);
 	    	var opt = document.createElement('option');
-    		opt.value = keys.key;
+    		opt.value = 'home';
 	    	
 	    	select.options[select.options.length] = new Option(opt.value, opt.value);
 			console.log(select);
     	
-	 })}
+	 })
+	 }
  	
     
 
