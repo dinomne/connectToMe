@@ -1,5 +1,8 @@
-people = Lawnchair({name:'people', record:'person'},function() { console.log("db created");});
 
+key = Lawnchair({name:'key', record:'key1'},function() { console.log("db key created"); 
+	key.save({key:"1", value:"me"}, function(obj){ console.log(obj)});	
+	});
+people = Lawnchair({name:'people', record:'person'},function() { console.log("db created");});
 
 function Database(people){
 	var form;
@@ -27,16 +30,20 @@ function Database(people){
         // refer to the callback param (mapped to `ime` in ctor options)
         // - also notice the terse callback in the second param 
         // - it uses the imed variable person
-    people.save({key:"me", value:form}, function(obj){ console.log(obj)});	
+    people.save({key:"me", value:form}, function(obj){ console.log(obj)});		
     
  
   })}
  
  
  window.onload = function(){
+ 	
+ 	
+ 	
+	 	
  	if (document.getElementById("My Profile").innerHTML==="My Profile")
  	{
- 		showProfile(id);
+ 		showProfile(key.get("1", function(obj) {return(obj)}));
  		console.log("show profile");
  	}else if (document.getElementById("My Profile").innerHTML==="Edit My Profile"){
  		Database(people);
@@ -44,6 +51,11 @@ function Database(people){
  	}else if (document.getElementById("My Profile").innerHTML==="Contacts"){
  		listProfiles(people);
  		console.log("list contats");
+ 	}else if (document.getElementById("My Profile").innerHTML==="Search"){
+ 		document.getElementById('searchSubmit').addEventListener('click', function(){
+ 		
+ 			term = document.getElementById("term");
+			Search(term);})
  	}else{
  		console.log("no function for this");
  	}
@@ -52,8 +64,10 @@ function Database(people){
 
 
 function showProfile(id){
+ 		
+ 		
  		var tags = ['ime', 'title', 'address', 'email', 'telephone', 'website'];
-		
+		console.log(id);
 	
 		people.get(id, function(obj) {
 			if(obj) {
@@ -81,14 +95,19 @@ function showProfile(id){
 	    	select = document.getElementById("select");
 	    	console.log(keys.key);
 	    	var opt = document.createElement('option');
-    		opt.value = 'home';
+    		opt.value = keys.key;
 	    	
 	    	select.options[select.options.length] = new Option(opt.value, opt.value);
 			console.log(select);
     	
 	 })
 	 }
+	 
+function Search(term) {
+	if(people.exists('my-key-name', function(exists) {
+        console.log('existence is: ' + exists);
+    }));
+  
+}
  	
-    
-
- 
+   
