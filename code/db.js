@@ -1,9 +1,15 @@
 
-key = Lawnchair({name:'key', record:'key1'},function() { console.log("db key created"); 
-	key.save({key:"1", value:"me"}, function(obj){ console.log(obj)});	
+  
+function loadKey () {
+  key = Lawnchair({name:'key', record:'key1'},function() { console.log("db key created"); 
+	key.save({key:"who", value:"me"}, function(obj){ console.log(obj)});	
 	});
+	return (key);
+}
+function loadpeople () {
 people = Lawnchair({name:'people', record:'person'},function() { console.log("db created");});
-
+return(people);
+}
 function Database(people){
 	var form;
 	
@@ -31,39 +37,60 @@ function Database(people){
         // - also notice the terse callback in the second param 
         // - it uses the imed variable person
     people.save({key:"me", value:form}, function(obj){ console.log(obj)});		
-    
- 
+    people.save({key:"them ", value:form}, function(obj){ console.log(obj)});
+ 	people.save({key:"us", value:form}, function(obj){ console.log(obj)});
   })}
- 
+ function swichBoard (n, people, key) {
+   
+ 	
+ 	
+   switch(n)
+{
+ 	
+ 		
+ 	case ("My Profile"):
+ 		
+ 		
+ 		key.get("who", function(obj) {showProfile(obj.value, people)});
+ 		console.log("show profile");
+ 		break;
+ 	case("Edit My Profile"):
+ 		
+ 		Database(people);
+ 		console.log("edit profile");
+ 		break;
+ 	case("Contacts"):
+ 		
+ 		listProfiles(people);
+ 		console.log("list contats");
+ 		break;
+ 	case("Search"):
+ 		
+ 		document.getElementById('searchSubmit').addEventListener('click', function(e){
+ 			notFaund = document.getElementById("notFaund");
+ 			term = document.getElementById("term");
+			e.preventDefault();
+			Search(term, people, notFaund);})
+			
+			break;
+ 	default:
+ 		console.log("no function for this");
+ 	}
+ }
  
  window.onload = function(){
  	
+ 	var n = document.getElementById("My Profile").innerHTML ;
+ 	var id = "";
+ 	var people = loadpeople();
+ 	var key = loadKey();
  	
- 	
-	 	
- 	if (document.getElementById("My Profile").innerHTML==="My Profile")
- 	{
- 		showProfile(key.get("1", function(obj) {return(obj)}));
- 		console.log("show profile");
- 	}else if (document.getElementById("My Profile").innerHTML==="Edit My Profile"){
- 		Database(people);
- 		console.log("edit profile");
- 	}else if (document.getElementById("My Profile").innerHTML==="Contacts"){
- 		listProfiles(people);
- 		console.log("list contats");
- 	}else if (document.getElementById("My Profile").innerHTML==="Search"){
- 		document.getElementById('searchSubmit').addEventListener('click', function(){
- 		
- 			term = document.getElementById("term");
-			Search(term);})
- 	}else{
- 		console.log("no function for this");
- 	}
+	swichBoard (n, people, key); 	
  };
   
 
 
-function showProfile(id){
+function showProfile(id, people){
  		
  		
  		var tags = ['ime', 'title', 'address', 'email', 'telephone', 'website'];
@@ -93,19 +120,27 @@ function showProfile(id){
  
  		people.each(function add (keys) {
 	    	select = document.getElementById("select");
-	    	console.log(keys.key);
-	    	var opt = document.createElement('option');
+	    	console.log(select);
+	    	var opt = document.createElement('li');
     		opt.value = keys.key;
 	    	
-	    	select.options[select.options.length] = new Option(opt.value, opt.value);
+	    	select.li[select.li.length] += '<li onclick="location = "../html/myProfile.html"; id=this.options[this.selectedIndex].value">' + opt.value + '</li>';
 			console.log(select);
     	
 	 })
 	 }
 	 
-function Search(term) {
-	if(people.exists('my-key-name', function(exists) {
-        console.log('existence is: ' + exists);
+function Search(term, people, notFaund) {
+	
+	if(people.exists(term.value, function(exists) {
+        
+        if (exists===true){
+        location = '../html/myProfile.html';
+        key.save(key= "who", value=term.value);
+        }else{
+        	alert("Sorry, Not Faund");
+        	console.log("no");
+        }
     }));
   
 }

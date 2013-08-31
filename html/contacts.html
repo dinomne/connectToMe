@@ -17,13 +17,14 @@
 		<button id="settingsB"onclick=location.href='settings.html'><img src="../img/settings.png" alt="Smiley face" height="50" width="50"></button>		
 	</nav>
 
-
-<select id="select" ONCHANGE="location = '../html/myProfile.html'; id=this.options[this.selectedIndex].value">
+<ol id="select" >
+	<li onclick="location = '../html/myProfile.html'; id=this.innerHTML">us</li>
+</ol>
+<select autofocus="true"id="select1" ONCHANGE="location = '../html/myProfile.html'; id=this.options[this.selectedIndex].value">
     
-    <option value="http://www.apple.com/">Apple</option>
-    <option value="http://www.bbc.com">BBC</option>
-    <option value="http://www.facebook.com">Facebook</option>
-</select>​
+    
+</select>
+​
 </body>
 
 </html>

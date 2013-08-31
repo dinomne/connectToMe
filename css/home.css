@@ -11,12 +11,12 @@ html, body{
 	
 	background-color: lightgray;
 }
-body a div {
+body a div, #select {
    
     text-align: center;
     vertical-align: middle;
     
-    padding: 30%;
+    padding: 10%;
     font-size:  30px;
 	font-style: Tahoma;
 	color: red;
