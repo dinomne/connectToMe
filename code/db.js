@@ -2,15 +2,16 @@
   
 function loadKey () {
   key = Lawnchair({name:'key', record:'key1'},function() { console.log("db key created"); 
-	key.save({key:"who", value:"me"}, function(obj){ console.log(obj)});	
-	});
-	return (key);
-}
+	
+	
+	
+}); return (key);}
 function loadpeople () {
 people = Lawnchair({name:'people', record:'person'},function() { console.log("db created");});
+
 return(people);
 }
-function Database(people){
+function Database(people, key){
 	var form;
 	
     // something to save...
@@ -36,9 +37,8 @@ function Database(people){
         // refer to the callback param (mapped to `ime` in ctor options)
         // - also notice the terse callback in the second param 
         // - it uses the imed variable person
-    people.save({key:"me", value:form}, function(obj){ console.log(obj)});		
-    people.save({key:"them ", value:form}, function(obj){ console.log(obj)});
- 	people.save({key:"us", value:form}, function(obj){ console.log(obj)});
+    people.save({key: form.ime, value:form}, function(obj){ console.log(obj)});		
+    key.save({key: "who", value:form.ime}, function(obj){ console.log(obj)});
   })}
  function swichBoard (n, people, key) {
    
@@ -56,7 +56,7 @@ function Database(people){
  		break;
  	case("Edit My Profile"):
  		
- 		Database(people);
+ 		Database(people, key);
  		console.log("edit profile");
  		break;
  	case("Contacts"):
@@ -119,14 +119,24 @@ function showProfile(id, people){
  	
  
  		people.each(function add (keys) {
+	    	var ol = document.getElementById('select');
+    		var li = document.createElement("li");
+    		li.innerHTML= keys.value.ime;
+    		console.log(keys.value);
+    		li.onclick='location="../html/myProfile.html"; id=this.options[this.selectedIndex].value';
+    		
+    		ol.insertBefore(li, ol.getElementsByTagName("li")[ol.length]);
+	    	
+	    	console.log(ol);
+	    	/*
 	    	select = document.getElementById("select");
 	    	console.log(select);
 	    	var opt = document.createElement('li');
     		opt.value = keys.key;
 	    	
-	    	select.li[select.li.length] += '<li onclick="location = "../html/myProfile.html"; id=this.options[this.selectedIndex].value">' + opt.value + '</li>';
+	    	select.opt[select.opt.length] += '<li onclick="location = "../html/myProfile.html"; id=this.options[this.selectedIndex].value">' + opt.value + '</li>';
 			console.log(select);
-    	
+    	*/
 	 })
 	 }
 	 

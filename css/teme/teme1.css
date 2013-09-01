@@ -60,5 +60,11 @@ div{
 	position: absolute;
 }
 #edit{
-	top: 95%;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	height: 10%;
+	width: 25%;
+	background-color: #1C8C31;
+	border-radius: 15px;
 }

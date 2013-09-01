@@ -1,4 +1,4 @@
-/* Navigation bar buttons. Include in every html App file*/
+
 nav {
 	display: block;
 	border: 2px solid black ;
@@ -6,10 +6,10 @@ nav {
 	min-width: 100%;
 	
 	height: auto;
-	height: 15%;
+	height: 20%;
 	min-height: 10%;
 
-	
+	-moz-flex-box: 1;
 	
 	
 }
