@@ -1,0 +1,71 @@
+
+nav{
+	max-height:15%; 
+}
+div{
+	background-image: url(../teme/teme2.png);
+	background-repeat:no-repeat;
+	background-size: cover;
+	margin-top: 15%;
+	min-height: 230px;
+	height: auto;
+	width: 100%;
+	display: block;
+		
+}
+#name{
+	font-size: 35px ;
+	color: white;
+	position: absolute;
+	top: 25%;
+	left: 45%;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	 
+}
+#title{
+	font-size: 32px;
+	color: white;
+	position: absolute;
+	top: 40%;
+	left: 45%;
+	
+}
+#address{
+	position: absolute;
+	top:60%;
+	left: 48%;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	
+}
+#email{
+	font: 13px black;
+	text-align: right;
+	left: 50%;
+	top: 75%;
+	 position: absolute;
+}
+#telephone{
+	font: 13px black;
+	z-index: 1;
+	left: 50%;
+	top:85%;
+	text-align: right;
+	position: absolute;
+}
+#website{
+	font:13px black;
+	left: 50%;
+	text-align: right;
+	top: 93%;
+	position: absolute;
+}
+#edit{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 10%;
+	width: 25%;
+	background-color: #1C8C31;
+	border-radius: 15px;
+}
